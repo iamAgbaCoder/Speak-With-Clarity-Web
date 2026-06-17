@@ -3,85 +3,825 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register — Speak With Clarity</title>
-    <meta name="description" content="Moderator & Speaker registration for Speak With Clarity" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Register — Speak With Clarity | University of Lagos</title>
+    <meta name="description" content="Moderator & Speaker registration for the Speak With Clarity masterclass at the University of Lagos, October 17, 2026." />
+    <link rel="icon" type="image/svg+xml" href="img/favicon.PNG" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Dark mode flash prevention -->
+    <script>
+      if (
+        localStorage.getItem("theme") === "dark" ||
+        (!localStorage.getItem("theme") &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      }
+    </script>
     <link rel="stylesheet" href="css/index.css" />
+    <style>
+      /* ── Register-page specific styles ── */
+      .reg-hero {
+        background: linear-gradient(135deg, #0f0c29 0%, #1a1048 50%, #0d1117 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      .reg-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 16c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm0-2c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6z' fill='rgba(255,255,255,.02)' fill-rule='evenodd'/%3E%3C/svg%3E");
+        pointer-events: none;
+      }
+      .orb-1 {
+        position: absolute;
+        width: 500px; height: 500px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(99,102,241,0.25) 0%, transparent 70%);
+        top: -150px; left: -150px;
+        filter: blur(60px);
+        pointer-events: none;
+      }
+      .orb-2 {
+        position: absolute;
+        width: 400px; height: 400px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(245,158,11,0.2) 0%, transparent 70%);
+        bottom: -100px; right: -100px;
+        filter: blur(60px);
+        pointer-events: none;
+      }
+
+      /* Glassmorphism card */
+      .glass-card {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.08);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+
+      /* Form card in light mode */
+      .form-card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 20px 40px -10px rgba(99,102,241,0.08);
+      }
+      .dark .form-card {
+        background: rgba(17,24,39,0.8);
+        border-color: rgba(255,255,255,0.08);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3), 0 20px 40px -10px rgba(99,102,241,0.15);
+      }
+
+      /* Styled inputs */
+      .reg-input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border-radius: 0.75rem;
+        border: 1.5px solid #e5e7eb;
+        font-size: 0.9375rem;
+        font-family: 'Space Grotesk', sans-serif;
+        transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+        background: #f9fafb;
+        color: #111827;
+        outline: none;
+        margin-top: 0.375rem;
+      }
+      .reg-input:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+        background: #ffffff;
+      }
+      .reg-input::placeholder { color: #9ca3af; }
+
+      .dark .reg-input {
+        background: rgba(255,255,255,0.05);
+        border-color: rgba(255,255,255,0.1);
+        color: #f3f4f6;
+      }
+      .dark .reg-input:focus {
+        border-color: #818cf8;
+        box-shadow: 0 0 0 3px rgba(129,140,248,0.15);
+        background: rgba(255,255,255,0.08);
+      }
+      .dark .reg-input::placeholder { color: rgba(255,255,255,0.3); }
+
+      .reg-label {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: #374151;
+        letter-spacing: 0.01em;
+      }
+      .dark .reg-label { color: #d1d5db; }
+
+      /* Step indicator */
+      .step-dot {
+        width: 10px; height: 10px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.2);
+        transition: all 0.3s;
+      }
+      .step-dot.active {
+        background: #f59e0b;
+        box-shadow: 0 0 0 3px rgba(245,158,11,0.25);
+        width: 28px;
+        border-radius: 5px;
+      }
+
+      /* Submit button */
+      .btn-submit {
+        width: 100%;
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, #6366f1 0%, #f59e0b 100%);
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 1rem;
+        font-family: 'Space Grotesk', sans-serif;
+        border: none;
+        border-radius: 9999px;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(99,102,241,0.4);
+        position: relative;
+        overflow: hidden;
+        letter-spacing: 0.02em;
+      }
+      .btn-submit::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 100%);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(99,102,241,0.5);
+      }
+      .btn-submit:hover::before { opacity: 1; }
+      .btn-submit:active { transform: translateY(0); }
+
+      /* Success overlay */
+      .success-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background: rgba(0,0,0,0.7);
+        backdrop-filter: blur(8px);
+        align-items: center;
+        justify-content: center;
+      }
+      .success-overlay.show { display: flex; }
+      .success-card {
+        background: linear-gradient(135deg, #0f0c29, #1a1048);
+        border: 1px solid rgba(99,102,241,0.3);
+        border-radius: 1.5rem;
+        padding: 3rem;
+        text-align: center;
+        max-width: 28rem;
+        width: 90%;
+        animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      @keyframes popIn {
+        from { opacity: 0; transform: scale(0.85) translateY(20px); }
+        to   { opacity: 1; transform: scale(1) translateY(0); }
+      }
+
+      /* Character counter */
+      .char-count {
+        font-size: 0.75rem;
+        color: #9ca3af;
+        text-align: right;
+        margin-top: 0.25rem;
+        transition: color 0.2s;
+      }
+      .char-count.warn { color: #f59e0b; }
+      .char-count.danger { color: #ef4444; }
+
+      /* Floating label effect */
+      .field-group { position: relative; }
+
+      /* Error states */
+      .reg-input.error {
+        border-color: #ef4444;
+        background: #fef2f2;
+      }
+      .dark .reg-input.error {
+        border-color: #f87171;
+        background: rgba(239,68,68,0.1);
+      }
+      .field-error {
+        font-size: 0.75rem;
+        color: #ef4444;
+        margin-top: 0.25rem;
+        display: none;
+        align-items: center;
+        gap: 0.25rem;
+      }
+      .field-error.show { display: flex; }
+
+      /* Info cards on left panel */
+      .info-card {
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 0.875rem;
+        padding: 1rem 1.25rem;
+        background: rgba(255,255,255,0.04);
+        transition: border-color 0.3s, background 0.3s;
+      }
+      .info-card:hover {
+        border-color: rgba(99,102,241,0.4);
+        background: rgba(99,102,241,0.06);
+      }
+
+      /* Animate-in on scroll */
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(24px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .fade-up {
+        animation: fadeUp 0.6s ease both;
+      }
+      .fade-up-delay-1 { animation-delay: 0.1s; }
+      .fade-up-delay-2 { animation-delay: 0.2s; }
+      .fade-up-delay-3 { animation-delay: 0.3s; }
+    </style>
   </head>
   <body class="min-h-screen bg-white text-gray-900 antialiased dark:bg-gray-950 dark:text-gray-100">
-    <header class="sticky top-0 z-40 bg-white/5 backdrop-blur-sm">
+
+    <!-- ── Header ── -->
+    <header data-header class="fixed left-0 right-0 top-0 z-50 transition-all duration-300 bg-transparent">
       <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
-        <a href="index.html" class="flex items-center gap-3">
-          <img src="img/swc.jpg" alt="Speak With Clarity Logo" class="h-10 w-auto" />
+        <!-- Logo -->
+        <a href="index.html" class="relative z-10 flex items-center gap-3">
+          <img src="img/favicon.PNG" alt="Speak With Clarity Logo" class="h-10 w-auto" />
           <div class="hidden sm:block">
-            <span class="text-lg font-bold">Speak With Clarity</span>
+            <span class="text-lg font-bold text-white">Speak With Clarity</span>
             <span class="ml-2 rounded-full bg-accent-500/20 px-2 py-0.5 text-xs font-medium text-accent-300">University of Lagos</span>
           </div>
         </a>
+        <!-- Right actions -->
         <div class="flex items-center gap-4">
-          <a href="index.html" class="text-sm font-medium text-primary-600 hover:underline">Home</a>
+          <!-- Dark Mode Toggle -->
+          <button type="button" id="theme-toggle" class="rounded-lg p-2 text-white/70 hover:bg-white/10 hover:text-white" aria-label="Toggle dark mode">
+            <svg class="h-5 w-5 dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            </svg>
+            <svg class="hidden h-5 w-5 dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+          </button>
+          <a href="index.html" class="hidden rounded-full border border-white/20 bg-white/5 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-all hover:bg-white/10 lg:inline-flex">← Back to Event</a>
         </div>
       </nav>
     </header>
 
-    <main class="py-20">
-      <div class="mx-auto max-w-4xl px-4">
-        <div class="mb-8 text-center">
-          <h1 class="text-3xl font-bold">Moderator & Speaker Registration</h1>
-          <p class="mt-2 text-gray-600">This registration page is reserved for event moderators and speakers. If you're an attendee, please contact the organizers.</p>
+    <!-- ── Main ── -->
+    <main>
+
+      <!-- ── Hero Banner ── -->
+      <section class="reg-hero min-h-[40vh] flex items-center pt-24 pb-12 lg:pt-32 lg:pb-16">
+        <div class="orb-1"></div>
+        <div class="orb-2"></div>
+        <div class="relative mx-auto max-w-7xl px-4 w-full lg:px-8">
+          <div class="mx-auto max-w-2xl text-center">
+            <!-- Badge -->
+            <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-accent-500/30 bg-accent-500/10 px-4 py-2 backdrop-blur-sm fade-up">
+              <span class="relative flex h-2 w-2">
+                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-400 opacity-75"></span>
+                <span class="relative inline-flex h-2 w-2 rounded-full bg-accent-500"></span>
+              </span>
+              <span class="text-sm font-medium text-accent-200">Moderators & Speakers Only · October 17, 2026</span>
+            </div>
+            <!-- Title -->
+            <h1 class="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl fade-up fade-up-delay-1">
+              Register for<br/>
+              <span class="bg-gradient-to-r from-primary-400 via-accent-400 to-primary-400 bg-clip-text text-transparent">Speak With Clarity</span>
+            </h1>
+            <p class="mx-auto mt-4 max-w-xl text-base text-gray-400 fade-up fade-up-delay-2">
+              This registration is exclusively for event moderators and speakers. Complete the form below and our team will reach out to confirm your participation.
+            </p>
+          </div>
         </div>
+      </section>
 
-        <div class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
-          <form id="moderator-registration" class="space-y-6" action="#" method="post">
-            <div class="grid gap-6 sm:grid-cols-2">
-              <div>
-                <label for="first-name" class="block text-sm font-medium text-gray-700">First Name *</label>
-                <input type="text" id="first-name" name="first_name" required class="mt-2 w-full rounded-lg border px-4 py-3" placeholder="First name" />
+      <!-- ── Form Section ── -->
+      <section class="bg-gray-50 dark:bg-gray-950 py-16 lg:py-24">
+        <div class="mx-auto max-w-7xl px-4 lg:px-8">
+          <div class="grid gap-12 lg:grid-cols-5 lg:gap-16 items-start">
+
+            <!-- ── Left Info Panel ── -->
+            <aside class="lg:col-span-2 lg:sticky lg:top-28 space-y-6">
+              <!-- Speaker card -->
+              <div class="glass-card rounded-2xl p-6 bg-gray-900 text-white">
+                <div class="flex items-center gap-4 mb-4">
+                  <div class="h-14 w-14 overflow-hidden rounded-xl flex-shrink-0 border-2 border-accent-500/30">
+                    <img src="img/david.jpg" alt="David Egbeyemi" class="h-full w-full object-cover" />
+                  </div>
+                  <div>
+                    <p class="font-bold text-white">David Egbeyemi</p>
+                    <p class="text-xs text-accent-300 font-medium">Lead Facilitator & Speaker</p>
+                  </div>
+                </div>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                  Join David for an intensive, one-day masterclass transforming how you communicate, present, and command presence.
+                </p>
               </div>
-              <div>
-                <label for="last-name" class="block text-sm font-medium text-gray-700">Last Name *</label>
-                <input type="text" id="last-name" name="last_name" required class="mt-2 w-full rounded-lg border px-4 py-3" placeholder="Last name" />
+
+              <!-- Event details -->
+              <div class="info-card">
+                <h3 class="text-sm font-bold uppercase tracking-wider text-gray-900 dark:text-white mb-4">Event Details</h3>
+                <ul class="space-y-3 text-sm">
+                  <li class="flex items-start gap-3">
+                    <span class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-lg bg-primary-100 dark:bg-primary-900/40">
+                      <svg class="h-3.5 w-3.5 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                      </svg>
+                    </span>
+                    <div>
+                      <p class="font-semibold text-gray-900 dark:text-white">October 17, 2026</p>
+                      <p class="text-gray-500 dark:text-gray-400">8:30 AM – 6:00 PM WAT</p>
+                    </div>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-lg bg-accent-100 dark:bg-accent-900/40">
+                      <svg class="h-3.5 w-3.5 text-accent-600 dark:text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                      </svg>
+                    </span>
+                    <div>
+                      <p class="font-semibold text-gray-900 dark:text-white">Main Auditorium</p>
+                      <p class="text-gray-500 dark:text-gray-400">University of Lagos, Akoka, Yaba</p>
+                    </div>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-lg bg-green-100 dark:bg-green-900/40">
+                      <svg class="h-3.5 w-3.5 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                      </svg>
+                    </span>
+                    <div>
+                      <p class="font-semibold text-gray-900 dark:text-white">500+ Expected Attendees</p>
+                      <p class="text-gray-500 dark:text-gray-400">Professionals, students & leaders</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- What to expect -->
+              <div class="info-card">
+                <h3 class="text-sm font-bold uppercase tracking-wider text-gray-900 dark:text-white mb-3">As a Moderator / Speaker, You Get</h3>
+                <ul class="space-y-2">
+                  <li class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                    <svg class="h-4 w-4 flex-shrink-0 text-accent-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    Dedicated backstage area & support
+                  </li>
+                  <li class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                    <svg class="h-4 w-4 flex-shrink-0 text-accent-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    Full-day catering & refreshments
+                  </li>
+                  <li class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                    <svg class="h-4 w-4 flex-shrink-0 text-accent-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    Certificate of participation
+                  </li>
+                  <li class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                    <svg class="h-4 w-4 flex-shrink-0 text-accent-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    Priority networking access
+                  </li>
+                  <li class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                    <svg class="h-4 w-4 flex-shrink-0 text-accent-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    Event resource materials & toolkit
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Trust badge -->
+              <div class="rounded-xl border border-green-200 bg-green-50 p-4 dark:border-green-800/40 dark:bg-green-900/20">
+                <div class="flex items-center gap-2 mb-1">
+                  <svg class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                  </svg>
+                  <p class="text-sm font-semibold text-green-700 dark:text-green-400">Your data is safe with us</p>
+                </div>
+                <p class="text-xs text-green-600 dark:text-green-500">We will only use your information to coordinate your participation in the event. We never sell or share personal data.</p>
+              </div>
+            </aside>
+
+            <!-- ── Registration Form ── -->
+            <div class="lg:col-span-3">
+              <div class="form-card rounded-2xl p-8 lg:p-10">
+
+                <!-- Form header -->
+                <div class="mb-8 border-b border-gray-100 pb-6 dark:border-gray-800">
+                  <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Moderator & Speaker Registration</h2>
+                  <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Fields marked with <span class="text-accent-500 font-bold">*</span> are required. We'll confirm your spot within 48 hours.</p>
+                </div>
+
+                <form id="moderator-registration" class="space-y-6" novalidate>
+
+                  <!-- Name row -->
+                  <div class="grid gap-5 sm:grid-cols-2">
+                    <div class="field-group">
+                      <label for="first-name" class="reg-label block">First Name <span class="text-accent-500">*</span></label>
+                      <input
+                        type="text"
+                        id="first-name"
+                        name="first_name"
+                        required
+                        autocomplete="given-name"
+                        class="reg-input"
+                        placeholder="e.g. Adaeze"
+                      />
+                      <p class="field-error" id="first-name-error">
+                        <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                        Please enter your first name.
+                      </p>
+                    </div>
+                    <div class="field-group">
+                      <label for="last-name" class="reg-label block">Last Name <span class="text-accent-500">*</span></label>
+                      <input
+                        type="text"
+                        id="last-name"
+                        name="last_name"
+                        required
+                        autocomplete="family-name"
+                        class="reg-input"
+                        placeholder="e.g. Okonkwo"
+                      />
+                      <p class="field-error" id="last-name-error">
+                        <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                        Please enter your last name.
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="field-group">
+                    <label for="email" class="reg-label block">Email Address <span class="text-accent-500">*</span></label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      autocomplete="email"
+                      class="reg-input"
+                      placeholder="you@institution.edu or you@example.com"
+                    />
+                    <p class="field-error" id="email-error">
+                      <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                      Please enter a valid email address.
+                    </p>
+                  </div>
+
+                  <!-- Phone + WhatsApp row -->
+                  <div class="grid gap-5 sm:grid-cols-2">
+                    <div class="field-group">
+                      <label for="phone" class="reg-label block">Phone Number</label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        autocomplete="tel"
+                        class="reg-input"
+                        placeholder="+234 801 234 5678"
+                      />
+                    </div>
+                    <div class="field-group">
+                      <label for="whatsapp" class="reg-label block">WhatsApp Number <span class="text-gray-400 font-normal text-xs">(if different)</span></label>
+                      <input
+                        type="tel"
+                        id="whatsapp"
+                        name="whatsapp"
+                        class="reg-input"
+                        placeholder="+234 801 234 5678"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Organization -->
+                  <div class="field-group">
+                    <label for="organization" class="reg-label block">Organization / Institution</label>
+                    <input
+                      type="text"
+                      id="organization"
+                      name="organization"
+                      autocomplete="organization"
+                      class="reg-input"
+                      placeholder="University, company, or NGO name"
+                    />
+                  </div>
+
+                  <!-- Role -->
+                  <div class="field-group">
+                    <label for="role" class="reg-label block">Your Role at the Event <span class="text-accent-500">*</span></label>
+                    <div class="relative mt-1.5">
+                      <select
+                        id="role"
+                        name="role"
+                        required
+                        class="reg-input mt-0 appearance-none pr-10 cursor-pointer"
+                      >
+                        <option value="" disabled selected>— Select your role —</option>
+                        <option value="moderator">Moderator</option>
+                        <option value="speaker">Speaker</option>
+                        <option value="panelist">Panelist</option>
+                        <option value="co-facilitator">Co-Facilitator</option>
+                      </select>
+                      <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+                        <svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <p class="field-error" id="role-error">
+                      <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                      Please select your role.
+                    </p>
+                  </div>
+
+                  <!-- Session / Pillar focus (dynamic, shown only for speaker roles) -->
+                  <div class="field-group hidden" id="session-group">
+                    <label for="session-focus" class="reg-label block">Session Focus / Pillar</label>
+                    <div class="relative mt-1.5">
+                      <select id="session-focus" name="session_focus" class="reg-input mt-0 appearance-none pr-10 cursor-pointer">
+                        <option value="" disabled selected>— Select a focus area —</option>
+                        <option value="pillar1">Pillar 1 — Psychology of Confidence</option>
+                        <option value="pillar2">Pillar 2 — Thought Structuring</option>
+                        <option value="pillar3">Pillar 3 — Executive Presence & Modulation</option>
+                        <option value="general">General / All Sessions</option>
+                      </select>
+                      <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+                        <svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Bio / Topic -->
+                  <div class="field-group">
+                    <div class="flex items-center justify-between">
+                      <label for="bio" class="reg-label block">Short Bio or Presentation Topic</label>
+                      <span class="char-count text-xs text-gray-400" id="bio-count">0 / 400</span>
+                    </div>
+                    <textarea
+                      id="bio"
+                      name="bio"
+                      rows="4"
+                      maxlength="400"
+                      class="reg-input resize-none mt-1.5"
+                      placeholder="Briefly describe yourself and / or what topic you'll be presenting or moderating…"
+                    ></textarea>
+                  </div>
+
+                  <!-- Dietary / accessibility needs -->
+                  <div class="field-group">
+                    <label for="accessibility" class="reg-label block">Dietary / Accessibility Needs <span class="text-gray-400 font-normal text-xs">(optional)</span></label>
+                    <input
+                      type="text"
+                      id="accessibility"
+                      name="accessibility"
+                      class="reg-input"
+                      placeholder="e.g. vegetarian, wheelchair access, hearing loop…"
+                    />
+                  </div>
+
+                  <!-- Agreement -->
+                  <div class="rounded-xl border border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900/60">
+                    <label class="flex items-start gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        id="agree"
+                        name="agree"
+                        required
+                        class="mt-0.5 h-4 w-4 flex-shrink-0 rounded border-gray-300 text-primary-600 focus:ring-primary-500 cursor-pointer"
+                      />
+                      <span class="text-sm text-gray-600 dark:text-gray-400 select-none">
+                        I confirm that I am registering as a moderator or speaker for this event. I agree to be contacted by the Speak With Clarity team about event logistics and my role on
+                        <strong class="text-gray-900 dark:text-gray-200">October 17, 2026</strong> at the
+                        <strong class="text-gray-900 dark:text-gray-200">Main Auditorium, University of Lagos</strong>.
+                      </span>
+                    </label>
+                    <p class="field-error ml-7" id="agree-error">
+                      <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                      Please read and accept the agreement above to continue.
+                    </p>
+                  </div>
+
+                  <!-- Submit -->
+                  <div>
+                    <button type="submit" id="submit-btn" class="btn-submit">
+                      <span id="submit-text">Submit Registration</span>
+                      <svg id="submit-icon" class="ml-2 -mr-1 h-5 w-5 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                      </svg>
+                      <!-- Loading spinner (hidden by default) -->
+                      <svg id="submit-spinner" class="ml-2 -mr-1 h-5 w-5 inline-block hidden animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+                      </svg>
+                    </button>
+                    <p class="mt-3 text-center text-xs text-gray-400 dark:text-gray-500">
+                      Not a moderator or speaker?
+                      <a href="index.html#tickets" class="text-primary-500 hover:underline font-medium">View attendee information →</a>
+                    </p>
+                  </div>
+
+                </form>
               </div>
             </div>
-
-            <div>
-              <label for="email" class="block text-sm font-medium text-gray-700">Email *</label>
-              <input type="email" id="email" name="email" required class="mt-2 w-full rounded-lg border px-4 py-3" placeholder="you@institution.edu" />
-            </div>
-
-            <div>
-              <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
-              <input type="tel" id="phone" name="phone" class="mt-2 w-full rounded-lg border px-4 py-3" placeholder="+234 ..." />
-            </div>
-
-            <div>
-              <label for="role" class="block text-sm font-medium text-gray-700">Role *</label>
-              <select id="role" name="role" required class="mt-2 w-full rounded-lg border px-4 py-3">
-                <option value="" disabled selected>Select role</option>
-                <option value="moderator">Moderator</option>
-                <option value="speaker">Speaker</option>
-              </select>
-            </div>
-
-            <div>
-              <label for="bio" class="block text-sm font-medium text-gray-700">Short Bio / Topic (optional)</label>
-              <textarea id="bio" name="bio" rows="4" class="mt-2 w-full rounded-lg border px-4 py-3" placeholder="Brief bio or the topic you'll present"></textarea>
-            </div>
-
-            <button type="submit" class="w-full rounded-lg bg-primary-600 px-6 py-3 text-white font-semibold">Submit Registration</button>
-            <p class="text-xs text-gray-500 text-center mt-2">By submitting you agree to be contacted about event logistics.</p>
-          </form>
+          </div>
         </div>
-      </div>
+      </section>
+
     </main>
 
+    <!-- ── Success Modal ── -->
+    <div class="success-overlay" id="success-overlay" role="dialog" aria-modal="true" aria-labelledby="success-title">
+      <div class="success-card">
+        <!-- Animated checkmark -->
+        <div class="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-green-500/30 bg-green-500/10">
+          <svg class="h-10 w-10 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+        </div>
+        <h2 id="success-title" class="text-2xl font-bold text-white mb-2">Registration Received!</h2>
+        <p class="text-gray-400 text-sm leading-relaxed mb-8">
+          Thank you for registering. Our team will review your submission and reach out to confirm your participation within <strong class="text-white">48 hours</strong>.
+        </p>
+        <div class="space-y-3">
+          <a href="index.html" class="block w-full rounded-full bg-gradient-to-r from-primary-500 to-accent-500 px-6 py-3 text-center text-sm font-semibold text-white transition-all hover:shadow-lg hover:shadow-primary-500/30">
+            Back to Event Page
+          </a>
+          <button id="close-success" class="block w-full rounded-full border border-white/10 bg-white/5 px-6 py-3 text-center text-sm font-medium text-gray-400 transition-all hover:bg-white/10 hover:text-white">
+            Submit Another Response
+          </button>
+        </div>
+      </div>
+    </div>
+
     <script>
-      // Minimal client-side hint: ensure role is moderator or speaker
-      document.getElementById('moderator-registration').addEventListener('submit', function(e) {
-        var role = document.getElementById('role').value;
-        if (!role) {
-          e.preventDefault();
-          alert('Please select your role (Moderator or Speaker).');
+      // ── Dark mode toggle ──
+      const themeToggle = document.getElementById('theme-toggle');
+      themeToggle && themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      });
+
+      // ── Scroll header ──
+      const header = document.querySelector('[data-header]');
+      if (header) {
+        const handleScroll = () => {
+          window.scrollY > 50 ? header.classList.add('scrolled') : header.classList.remove('scrolled');
+        };
+        handleScroll();
+        window.addEventListener('scroll', handleScroll, { passive: true });
+      }
+
+      // ── Show/hide session focus based on role ──
+      const roleSelect = document.getElementById('role');
+      const sessionGroup = document.getElementById('session-group');
+      roleSelect && roleSelect.addEventListener('change', () => {
+        const v = roleSelect.value;
+        if (v === 'speaker' || v === 'panelist' || v === 'co-facilitator') {
+          sessionGroup.classList.remove('hidden');
+        } else {
+          sessionGroup.classList.add('hidden');
+        }
+      });
+
+      // ── Bio character counter ──
+      const bioArea = document.getElementById('bio');
+      const bioCount = document.getElementById('bio-count');
+      bioArea && bioArea.addEventListener('input', () => {
+        const len = bioArea.value.length;
+        const max = parseInt(bioArea.maxLength, 10);
+        bioCount.textContent = `${len} / ${max}`;
+        bioCount.className = 'char-count';
+        if (len > max * 0.75) bioCount.classList.add('warn');
+        if (len > max * 0.9) { bioCount.classList.remove('warn'); bioCount.classList.add('danger'); }
+      });
+
+      // ── Validation helpers ──
+      function showError(inputId, errorId) {
+        const input = document.getElementById(inputId);
+        const err   = document.getElementById(errorId);
+        input && input.classList.add('error');
+        err   && err.classList.add('show');
+      }
+      function clearError(inputId, errorId) {
+        const input = document.getElementById(inputId);
+        const err   = document.getElementById(errorId);
+        input && input.classList.remove('error');
+        err   && err.classList.remove('show');
+      }
+
+      // Inline clear-on-change
+      ['first-name', 'last-name', 'email', 'role'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('input', () => clearError(id, `${id}-error`));
+          el.addEventListener('change', () => clearError(id, `${id}-error`));
+        }
+      });
+      const agreeBox = document.getElementById('agree');
+      agreeBox && agreeBox.addEventListener('change', () => clearError('agree', 'agree-error'));
+
+      // ── Form submit ──
+      const form = document.getElementById('moderator-registration');
+      const successOverlay = document.getElementById('success-overlay');
+      const submitBtn = document.getElementById('submit-btn');
+      const submitText = document.getElementById('submit-text');
+      const submitIcon = document.getElementById('submit-icon');
+      const submitSpinner = document.getElementById('submit-spinner');
+
+      form && form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        let valid = true;
+
+        // Clear previous errors
+        ['first-name', 'last-name', 'email', 'role'].forEach(id => clearError(id, `${id}-error`));
+        clearError('agree', 'agree-error');
+
+        // Validate
+        const firstName = document.getElementById('first-name').value.trim();
+        const lastName  = document.getElementById('last-name').value.trim();
+        const email     = document.getElementById('email').value.trim();
+        const role      = document.getElementById('role').value;
+        const agree     = document.getElementById('agree').checked;
+
+        if (!firstName) { showError('first-name', 'first-name-error'); valid = false; }
+        if (!lastName)  { showError('last-name',  'last-name-error');  valid = false; }
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          showError('email', 'email-error'); valid = false;
+        }
+        if (!role) { showError('role', 'role-error'); valid = false; }
+        if (!agree) { showError('agree', 'agree-error'); valid = false; }
+
+        if (!valid) {
+          // Scroll to first error
+          const firstErr = form.querySelector('.reg-input.error, input.error');
+          firstErr && firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+
+        // Simulate loading state
+        submitBtn.disabled = true;
+        submitText.textContent = 'Submitting…';
+        submitIcon.classList.add('hidden');
+        submitSpinner.classList.remove('hidden');
+
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitText.textContent = 'Submit Registration';
+          submitIcon.classList.remove('hidden');
+          submitSpinner.classList.add('hidden');
+          successOverlay.classList.add('show');
+          document.body.style.overflow = 'hidden';
+        }, 1800);
+      });
+
+      // ── Close success modal ──
+      const closeSuccess = document.getElementById('close-success');
+      closeSuccess && closeSuccess.addEventListener('click', () => {
+        successOverlay.classList.remove('show');
+        document.body.style.overflow = '';
+        form.reset();
+        sessionGroup.classList.add('hidden');
+        bioCount.textContent = '0 / 400';
+        bioCount.className = 'char-count';
+      });
+
+      // ── Click outside success card to close ──
+      successOverlay && successOverlay.addEventListener('click', function(e) {
+        if (e.target === successOverlay) {
+          successOverlay.classList.remove('show');
+          document.body.style.overflow = '';
+        }
+      });
+
+      // ── Escape key closes modal ──
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && successOverlay.classList.contains('show')) {
+          successOverlay.classList.remove('show');
+          document.body.style.overflow = '';
         }
       });
     </script>
