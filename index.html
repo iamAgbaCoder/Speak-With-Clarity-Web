@@ -10,8 +10,10 @@
     <title>Speak With Clarity | The Blueprint of a Voice</title>
     <meta
       name="description"
-      content="Transform your communication skills and build unstoppable confidence. Learn from industry leaders how to speak with clarity, structure your thoughts, and command any room."
+      content="Speak With Clarity is an immersive communication masterclass for participants and attendees at the University of Lagos."
     />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="theme-color" content="#0f172a" />
     <link rel="icon" type="image/svg+xml" href="img/favicon.PNG" />
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/" />
@@ -23,14 +25,26 @@
     <!-- Open Graph -->
     <meta
       property="og:title"
-      content="Speak With Clarity | Transform Your Communication"
+      content="Speak With Clarity | The Blueprint of a Voice"
     />
     <meta
       property="og:description"
-      content="Build confidence, structure thoughts, and command presence. Join us for an intensive communication skills program."
+      content="A communication masterclass for participants and attendees at the University of Lagos."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Speak With Clarity" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://speakwithclarity.com/" />
+    <meta property="og:image" content="img/swc.jpg" />
+    <meta property="og:image:alt" content="Speak With Clarity event preview" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Speak With Clarity | The Blueprint of a Voice" />
+    <meta
+      name="twitter:description"
+      content="An immersive communication masterclass for participants and attendees at the University of Lagos."
+    />
+    <meta name="twitter:image" content="img/swc.jpg" />
+    <link rel="canonical" href="https://speakwithclarity.com/" />
     <!-- Dark mode flash prevention -->
     <script>
       if (
@@ -42,6 +56,77 @@
       }
     </script>
     <link rel="stylesheet" href="css/index.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "Speak With Clarity",
+        "startDate": "2026-10-17T08:30:00+01:00",
+        "endDate": "2026-10-17T18:00:00+01:00",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "image": ["img/swc.jpg"],
+        "description": "A communication masterclass for participants and attendees at the University of Lagos.",
+        "location": {
+          "@type": "Place",
+          "name": "Main Auditorium, University of Lagos",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Yaba",
+            "addressRegion": "Lagos",
+            "addressCountry": "NG"
+          }
+        },
+        "organizer": {
+          "@type": "Organization",
+          "name": "Speak With Clarity"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://syticks.com/speak-with-clarity-unilag-419351",
+          "availability": "https://schema.org/InStock",
+          "priceCurrency": "NGN"
+        }
+      }
+    </script>
+    <style>
+      .hero-orb {
+        animation: drift 16s ease-in-out infinite alternate;
+      }
+
+      .hero-orb[data-speed="slow"] {
+        animation-duration: 22s;
+      }
+
+      .hero-orb[data-speed="fast"] {
+        animation-duration: 12s;
+      }
+
+      [data-animate] {
+        will-change: transform, opacity;
+      }
+
+      @keyframes drift {
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+        100% {
+          transform: translate3d(0, -24px, 0) scale(1.04);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .hero-orb,
+        [data-animate] {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
   </head>
   <body
     class="min-h-screen bg-white text-gray-900 antialiased dark:bg-gray-950 dark:text-gray-100"
@@ -72,11 +157,11 @@
         <!-- Desktop Navigation -->
         <div class="hidden items-center gap-8 lg:flex" data-nav>
           <a
-            href="index.html#speakers"
-            data-nav-link="/speakers"
+            href="index.html#facilitator"
+            data-nav-link="/facilitator"
             class="text-sm font-medium text-white/80 transition-colors hover:text-white"
           >
-            Speakers </a
+            Facilitator </a
           ><a
             href="index.html#schedule"
             data-nav-link="/schedule"
@@ -95,13 +180,7 @@
             class="text-sm font-medium text-white/80 transition-colors hover:text-white"
           >
             Sponsors </a
-          ><a
-            href="index.html#venue"
-            data-nav-link="/venue"
-            class="text-sm font-medium text-white/80 transition-colors hover:text-white"
           >
-            Venue
-          </a>
         </div>
         <!-- Right Side Actions -->
         <div class="flex items-center gap-4">
@@ -141,7 +220,9 @@
           </button>
           <!-- CTA Button (Desktop) -->
           <a
-            href="index.html#tickets"
+            href="https://syticks.com/speak-with-clarity-unilag-419351"
+            target="_blank"
+            rel="noopener noreferrer"
             class="hidden rounded-full bg-gradient-to-r from-primary-500 to-accent-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary-500/25 transition-all hover:shadow-xl hover:shadow-primary-500/30 lg:inline-flex"
           >
             Get Tickets
@@ -185,11 +266,11 @@
       >
         <div class="flex flex-col gap-4" data-nav-mobile>
           <a
-            href="index.html#speakers"
-            data-nav-link="/speakers"
+            href="index.html#facilitator"
+            data-nav-link="/facilitator"
             class="text-lg font-medium text-white transition-colors hover:text-primary-400"
           >
-            Speakers </a
+            Facilitator </a
           ><a
             href="index.html#schedule"
             data-nav-link="/schedule"
@@ -208,16 +289,12 @@
             class="text-lg font-medium text-white transition-colors hover:text-primary-400"
           >
             Sponsors </a
-          ><a
-            href="index.html#venue"
-            data-nav-link="/venue"
-            class="text-lg font-medium text-white transition-colors hover:text-primary-400"
           >
-            Venue
-          </a>
           <div class="mt-4 border-t border-white/10 pt-4">
             <a
-              href="index.html#tickets"
+              href="https://syticks.com/speak-with-clarity-unilag-419351"
+              target="_blank"
+              rel="noopener noreferrer"
               class="inline-flex w-full justify-center rounded-full bg-gradient-to-r from-primary-500 to-accent-500 px-5 py-3 text-sm font-semibold text-white shadow-lg"
             >
               Get Tickets
@@ -236,13 +313,16 @@
           ></div>
           <!-- Animated gradient orbs -->
           <div
-            class="absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-primary-500/30 blur-[120px]"
+            class="hero-orb absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-primary-500/30 blur-[120px]"
+            data-speed="slow"
           ></div>
           <div
-            class="absolute -right-40 bottom-0 h-[500px] w-[500px] rounded-full bg-accent-500/30 blur-[120px]"
+            class="hero-orb absolute -right-40 bottom-0 h-[500px] w-[500px] rounded-full bg-accent-500/30 blur-[120px]"
+            data-speed="fast"
           ></div>
           <div
-            class="absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-600/20 blur-[100px]"
+            class="hero-orb absolute left-1/2 top-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-600/20 blur-[100px]"
+            data-speed="slow"
           ></div>
           <!-- Grid pattern -->
           <div
@@ -255,6 +335,8 @@
           <!-- Event badge -->
           <div
             class="mb-8 inline-flex items-center gap-2 rounded-full border border-primary-500/30 bg-primary-500/10 px-4 py-2 backdrop-blur-sm"
+            data-animate
+            style="animation-delay: 0ms"
           >
             <span class="relative flex h-2 w-2">
               <span
@@ -271,6 +353,8 @@
           <!-- Title -->
           <h1
             class="max-w-4xl text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl"
+            data-animate
+            style="animation-delay: 120ms"
           >
             Speak With
             <span
@@ -280,8 +364,12 @@
             </span>
           </h1>
           <!-- Subtitle -->
-          <p class="mx-auto mt-6 max-w-2xl text-lg text-gray-400 lg:text-xl">
-            Break through speech anxiety, structure your thoughts with precision, and command presence with every word. Transform from fear to confidence in just one intensive experience.
+          <p
+            class="mx-auto mt-6 max-w-2xl text-lg text-gray-400 lg:text-xl"
+            data-animate
+            style="animation-delay: 200ms"
+          >
+            Break through speech anxiety, structure your thoughts with precision, and command presence with every word. Transform from fear to confidence in one intensive experience.
           </p>
           <!-- Countdown Timer -->
           <!--
@@ -294,6 +382,8 @@
             data-demo="true"
             data-target="2026-10-17T09:00:00"
             class="mt-12 grid grid-cols-4 gap-4 sm:gap-6"
+            data-animate
+            style="animation-delay: 280ms"
           >
             <div
               class="flex flex-col items-center rounded-2xl border border-white/10 bg-white/5 px-4 py-6 backdrop-blur-sm sm:px-8"
@@ -351,10 +441,14 @@
           <!-- CTA Buttons -->
           <div class="mt-12 flex flex-col items-center gap-4 sm:flex-row">
             <a
-              href="#register"
+              href="https://syticks.com/speak-with-clarity-unilag-419351"
+              target="_blank"
+              rel="noopener noreferrer"
               class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-primary-500/25 transition-all hover:shadow-xl hover:shadow-primary-500/30"
+              data-animate
+              style="animation-delay: 360ms"
             >
-              Register Now
+              Get Tickets
               <svg
                 class="h-5 w-5"
                 fill="none"
@@ -370,10 +464,12 @@
               </svg>
             </a>
             <a
-              href="#methodology"
+              href="#schedule"
               class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/20 bg-white/5 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all hover:border-white/30 hover:bg-white/10"
+              data-animate
+              style="animation-delay: 440ms"
             >
-              Learn Our Method
+              Explore Schedule
             </a>
           </div>
           <!-- Stats -->
@@ -402,7 +498,7 @@
           <!-- Scroll indicator -->
           <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
             <a
-              href="#speakers"
+              href="#facilitator"
               class="flex flex-col items-center gap-2 text-gray-500 transition-colors hover:text-primary-400"
             >
               <span class="text-xs font-medium uppercase tracking-widest"
@@ -528,7 +624,9 @@
               Ready to transform your communication?
             </p>
             <a
-              href="#register"
+              href="https://syticks.com/speak-with-clarity-unilag-419351"
+              target="_blank"
+              rel="noopener noreferrer"
               class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-primary-500 to-accent-500 px-8 py-3 text-base font-semibold text-white shadow-lg shadow-primary-500/25 transition-all hover:shadow-xl hover:shadow-primary-500/30"
             >
               Secure Your Spot
@@ -536,7 +634,7 @@
           </div>
         </div>
       </section>
-      <section id="speakers" class="bg-white py-20 dark:bg-gray-950 lg:py-28">
+      <section id="facilitator" class="bg-white py-20 dark:bg-gray-950 lg:py-28">
         <div class="mx-auto max-w-7xl px-4 lg:px-8">
           <!-- Section header -->
           <div class="mx-auto max-w-3xl text-center">
@@ -551,10 +649,10 @@
               Learn From <span class="text-gradient">David Egbeyemi</span>
             </h2>
             <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
-              An experienced public speaker and communication psychologist dedicated to helping you master the blueprint of your voice.
+              An experienced communication coach and psychologist dedicated to helping participants master the blueprint of their voice.
             </p>
           </div>
-          <!-- Featured Speakers -->
+          <!-- Featured Facilitator -->
           <div class="mt-16 max-w-4xl mx-auto">
             <div class="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:border-primary-500 hover:shadow-xl dark:border-gray-800 dark:bg-gray-900 dark:hover:border-primary-500 md:p-8" data-animate style="animation-delay: 0ms">
               <div class="grid gap-8 md:grid-cols-2 items-center">
@@ -570,7 +668,7 @@
                 <!-- Content -->
                 <div class="space-y-4">
                   <div class="inline-flex items-center gap-2 rounded-full bg-primary-100 px-3 py-1 text-xs font-semibold text-primary-700 dark:bg-primary-900/30 dark:text-primary-300">
-                    Lead Facilitator & Speaker
+                    Lead Facilitator
                   </div>
                   <h3 class="text-3xl font-bold text-gray-900 dark:text-white">David Egbeyemi</h3>
                   <p class="text-base text-primary-500 font-semibold">
@@ -650,7 +748,7 @@
                     <span class="text-sm font-bold text-gray-500">08:30 AM - 09:00 AM</span>
                     <span class="inline-flex rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-semibold text-gray-600 dark:bg-gray-900 dark:text-gray-400">Pre-Event</span>
                   </div>
-                  <h4 class="mt-2 text-lg font-bold text-gray-900 dark:text-white">Registration &amp; Welcome Coffee</h4>
+                  <h4 class="mt-2 text-lg font-bold text-gray-900 dark:text-white">Registration &amp; Welcome</h4>
                   <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">Lobby check-in, handbook collection, and informal meet-up before the workshop begins.</p>
                 </div>
               </div>
@@ -676,8 +774,8 @@
                     <span class="text-sm font-bold text-gray-500">10:30 AM - 11:00 AM</span>
                     <span class="inline-flex rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-semibold text-gray-600 dark:bg-gray-900 dark:text-gray-400">Break</span>
                   </div>
-                  <h4 class="mt-2 text-lg font-bold text-gray-900 dark:text-white">Coffee Break &amp; Networking</h4>
-                  <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">Refreshments served in the courtyard. Meet fellow participants and exchange thoughts.</p>
+                  <h4 class="mt-2 text-lg font-bold text-gray-900 dark:text-white">Networking Break</h4>
+                  <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">Meet fellow participants, exchange thoughts, and reset before the next session.</p>
                 </div>
               </div>
 
@@ -700,10 +798,10 @@
                 <div class="rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-gray-950 md:p-6">
                   <div class="flex flex-wrap items-center justify-between gap-2">
                     <span class="text-sm font-bold text-gray-500">01:00 PM - 02:00 PM</span>
-                    <span class="inline-flex rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-semibold text-gray-600 dark:bg-gray-900 dark:text-gray-400">Lunch</span>
+                    <span class="inline-flex rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-semibold text-gray-600 dark:bg-gray-900 dark:text-gray-400">Midday</span>
                   </div>
-                  <h4 class="mt-2 text-lg font-bold text-gray-900 dark:text-white">Catered Networking Lunch</h4>
-                  <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">Enjoy a premium buffet lunch while connecting with industry peers and event sponsors.</p>
+                  <h4 class="mt-2 text-lg font-bold text-gray-900 dark:text-white">Midday Reflection &amp; Peer Exchange</h4>
+                  <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">A pause to review key ideas, share notes, and prepare for the afternoon workshops.</p>
                 </div>
               </div>
 
@@ -741,8 +839,8 @@
                     <span class="text-sm font-bold text-accent-500">05:00 PM - 06:00 PM</span>
                     <span class="inline-flex rounded-full bg-accent-100 px-2.5 py-0.5 text-xs font-semibold text-accent-700 dark:bg-accent-900/30 dark:text-accent-300">Closing</span>
                   </div>
-                  <h4 class="mt-2 text-lg font-bold text-gray-900 dark:text-white">Awarding of Certificates &amp; Cocktail Reception</h4>
-                  <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">Distribution of the certificates of completion followed by cocktails, refreshments, and a networking session on the terrace.</p>
+                  <h4 class="mt-2 text-lg font-bold text-gray-900 dark:text-white">Awarding of Certificates &amp; Closing Circle</h4>
+                  <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">Distribution of the certificates of completion followed by a final networking and reflection session.</p>
                 </div>
               </div>
             </div>
@@ -771,16 +869,6 @@
           </div>
         </div>
       </section>
-      <!-- Registration CTA (Moderator & Speaker) -->
-      <section id="register" class="py-20 lg:py-28">
-        <div class="mx-auto max-w-4xl px-4 text-center">
-          <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">Moderator & Speaker Registration</h2>
-          <p class="mt-4 text-lg text-gray-600">This page is reserved for event moderators and speakers. Click below to register.</p>
-          <div class="mt-8 flex justify-center">
-            <a href="register.html" class="inline-block rounded-full bg-gradient-to-r from-primary-500 to-accent-500 px-8 py-4 text-center font-semibold text-white shadow-lg transition-all hover:shadow-xl">Register (Moderators & Speakers)</a>
-          </div>
-        </div>
-      </section>
       <section id="tickets" class="bg-white py-20 dark:bg-gray-950 lg:py-28">
         <div class="mx-auto max-w-7xl px-4 lg:px-8">
           <!-- Section header -->
@@ -788,15 +876,15 @@
             <div
               class="mb-4 inline-flex items-center gap-2 rounded-full border border-primary-200 bg-primary-50 px-4 py-1.5 text-sm font-medium text-primary-700 dark:border-primary-800 dark:bg-primary-900/30 dark:text-primary-300"
             >
-              Event Includes
+              Participant Access
             </div>
             <h2
               class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-5xl"
             >
-              What You <span class="text-gradient">Get</span>
+              What Participants <span class="text-gradient">Get</span>
             </h2>
             <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
-              Your registration includes everything you need for a transformational experience in communication training.
+              Your ticket includes everything you need for a transformational experience in communication training.
             </p>
           </div>
           <!-- Tickets grid -->
@@ -883,7 +971,7 @@
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                  <span class="text-sm text-gray-600 dark:text-gray-400">Breakfast, lunch, and beverages</span>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">Practical workshop materials and follow-up guidance</span>
                 </li>
                 <li class="flex items-start gap-3">
                   <svg
@@ -917,7 +1005,9 @@
               <!-- CTA -->
               <div class="mt-8">
                 <a
-                  href="#register"
+                  href="https://syticks.com/speak-with-clarity-unilag-419351"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   class="inline-block w-full rounded-full bg-gradient-to-r from-primary-500 to-accent-500 px-6 py-3 text-center font-semibold text-white shadow-lg transition-all hover:shadow-xl"
                 >
                   Claim Your Spot
@@ -969,7 +1059,7 @@
                     Partial attendance?
                   </summary>
                   <p class="mt-3 text-xs text-gray-600 dark:text-gray-400">
-                    Full day recommended, contact us for special cases.
+                    Full day recommended for the best learning outcome.
                   </p>
                 </details>
                 <details class="group">
@@ -980,7 +1070,7 @@
                     Follow-up program?
                   </summary>
                   <p class="mt-3 text-xs text-gray-600 dark:text-gray-400">
-                    Yes! Alumni network and advanced sessions included.
+                    Yes! Participant resources and follow-up content are included.
                   </p>
                 </details>
               </div>
@@ -1177,274 +1267,6 @@
           </div>
         </div>
       </section>
-      <section id="venue" class="bg-white py-20 dark:bg-gray-950 lg:py-28">
-        <div class="mx-auto max-w-7xl px-4 lg:px-8">
-          <!-- Section header -->
-          <div class="mx-auto max-w-3xl text-center">
-            <div
-              class="mb-4 inline-flex items-center gap-2 rounded-full border border-accent-200 bg-accent-50 px-4 py-1.5 text-sm font-medium text-accent-700 dark:border-accent-800 dark:bg-accent-900/30 dark:text-accent-300"
-            >
-              The Location
-            </div>
-            <h2
-              class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-5xl"
-            >
-              Event <span class="text-gradient">Venue</span>
-            </h2>
-            <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
-              Located on the prestigious Akoka campus in Yaba, Lagos, the Main Auditorium at the University of Lagos is a landmark venue offering world-class facilities, excellent acoustics, and easy access from major transit routes across the city.
-            </p>
-          </div>
-          <div class="mt-16 grid gap-12 lg:grid-cols-2">
-            <!-- Map embed (OpenStreetMap - no API key required) -->
-            <div
-              class="relative h-full min-h-[400px] overflow-hidden rounded-2xl bg-gray-100 dark:bg-gray-800 lg:min-h-0"
-            >
-              <div class="absolute inset-0">
-                <!-- OpenStreetMap embed for Main Auditorium, University of Lagos -->
-                <iframe
-                  title="Venue Map - Main Auditorium, University of Lagos"
-                  class="h-full w-full border-0"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=3.3830%2C6.5120%2C3.3960%2C6.5200&amp;layer=mapnik&amp;marker=6.5157%2C3.3898"
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                ></iframe>
-              </div>
-              <!-- Map overlay with venue info -->
-              <div
-                class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6"
-              >
-                <div class="flex items-end justify-between">
-                  <div>
-                    <p class="font-semibold text-white">Main Auditorium, University of Lagos</p>
-                    <p class="text-sm text-gray-300">University of Lagos, Akoka</p>
-                  </div>
-                  <a
-                    href="https://maps.google.com/?q=University%20of%20Lagos%2C%20Akoka%2C%20Yaba%2C%20Lagos"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/30"
-                  >
-                    <svg
-                      class="h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      ></path>
-                    </svg>
-                    Directions
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- Venue info -->
-            <div>
-              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
-                Main Auditorium, University of Lagos
-              </h3>
-              <p class="mt-2 text-gray-600 dark:text-gray-400">
-                University of Lagos, Akoka<br />
-                Yaba, Lagos, Nigeria
-              </p>
-              <!-- Features -->
-              <div class="mt-8">
-                <h4 class="font-semibold text-gray-900 dark:text-white">
-                  Venue Features
-                </h4>
-                <ul class="mt-4 grid gap-3 sm:grid-cols-2">
-                  <li
-                    class="flex items-center gap-2 text-gray-600 dark:text-gray-400"
-                  >
-                    <svg
-                      class="h-5 w-5 flex-shrink-0 text-primary-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      ></path>
-                    </svg>
-                    State-of-the-art AV equipment
-                  </li>
-                  <li
-                    class="flex items-center gap-2 text-gray-600 dark:text-gray-400"
-                  >
-                    <svg
-                      class="h-5 w-5 flex-shrink-0 text-primary-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      ></path>
-                    </svg>
-                    High-speed WiFi throughout
-                  </li>
-                  <li
-                    class="flex items-center gap-2 text-gray-600 dark:text-gray-400"
-                  >
-                    <svg
-                      class="h-5 w-5 flex-shrink-0 text-primary-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      ></path>
-                    </svg>
-                    Multiple breakout rooms
-                  </li>
-                  <li
-                    class="flex items-center gap-2 text-gray-600 dark:text-gray-400"
-                  >
-                    <svg
-                      class="h-5 w-5 flex-shrink-0 text-primary-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      ></path>
-                    </svg>
-                    On-site catering
-                  </li>
-                  <li
-                    class="flex items-center gap-2 text-gray-600 dark:text-gray-400"
-                  >
-                    <svg
-                      class="h-5 w-5 flex-shrink-0 text-primary-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      ></path>
-                    </svg>
-                    Accessible facilities
-                  </li>
-                  <li
-                    class="flex items-center gap-2 text-gray-600 dark:text-gray-400"
-                  >
-                    <svg
-                      class="h-5 w-5 flex-shrink-0 text-primary-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      ></path>
-                    </svg>
-                    Public transit accessible
-                  </li>
-                </ul>
-              </div>
-              <!-- Nearby Hotels -->
-              <div class="mt-8">
-                <h4 class="font-semibold text-gray-900 dark:text-white">
-                  Recommended Hotels
-                </h4>
-                <ul class="mt-4 space-y-3">
-                  <li
-                    class="flex items-center justify-between rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 dark:border-gray-700 dark:bg-gray-800"
-                  >
-                    <span class="font-medium text-gray-900 dark:text-white"
-                      >UNILAG Guest House (On Campus)</span
-                    >
-                    <span class="text-sm text-gray-500 dark:text-gray-400"
-                      >0.2 miles</span
-                    >
-                  </li>
-                  <li
-                    class="flex items-center justify-between rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 dark:border-gray-700 dark:bg-gray-800"
-                  >
-                    <span class="font-medium text-gray-900 dark:text-white"
-                      >Presken Hotel, Yaba</span
-                    >
-                    <span class="text-sm text-gray-500 dark:text-gray-400"
-                      >1.5 miles</span
-                    >
-                  </li>
-                  <li
-                    class="flex items-center justify-between rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 dark:border-gray-700 dark:bg-gray-800"
-                  >
-                    <span class="font-medium text-gray-900 dark:text-white"
-                      >Ibis Lagos Ikeja</span
-                    >
-                    <span class="text-sm text-gray-500 dark:text-gray-400"
-                      >6.5 miles</span
-                    >
-                  </li>
-                </ul>
-                <p class="mt-4 text-sm text-gray-500 dark:text-gray-400">
-                  Use code
-                  <span class="font-semibold text-primary-500"
-                    >CLARITY26</span
-                  >
-                  for exclusive rates.
-                </p>
-              </div>
-              <!-- Directions -->
-              <div class="mt-8 flex flex-wrap gap-4">
-                <a
-                  href="#"
-                  class="inline-flex items-center gap-2 rounded-full bg-primary-500 px-6 py-3 font-semibold text-white shadow-lg shadow-primary-500/25 transition-all hover:bg-primary-600 hover:shadow-xl"
-                >
-                  <svg
-                    class="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
-                    ></path>
-                  </svg>
-                  Get Directions
-                </a>
-                <a
-                  href="#"
-                  class="inline-flex items-center gap-2 rounded-full border-2 border-gray-300 px-6 py-3 font-semibold text-gray-700 transition-all hover:border-primary-500 hover:text-primary-500 dark:border-gray-600 dark:text-gray-300 dark:hover:border-primary-500 dark:hover:text-primary-400"
-                >
-                  Book Hotel
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
       <section class="relative overflow-hidden bg-gray-950 py-20 lg:py-28">
         <!-- Background -->
         <div class="absolute inset-0">
@@ -1476,7 +1298,7 @@
                 ></span>
               </span>
               <span class="text-sm font-medium text-accent-200"
-                >Limited tickets remaining</span
+                >Seats are filling quickly</span
               >
             </div>
             <h2
@@ -1486,7 +1308,7 @@
             </h2>
             <p class="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
               Join us for one intensive day of transformational talks, hands-on workshops, and
-              live coaching by David Egbeyemi. Secure your spot today.
+              live coaching by David Egbeyemi. Secure your ticket today.
             </p>
             <!-- Event details -->
             <div
@@ -1536,10 +1358,12 @@
               class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
             >
               <a
-                href="#tickets"
+                href="https://syticks.com/speak-with-clarity-unilag-419351"
+                target="_blank"
+                rel="noopener noreferrer"
                 class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-primary-500/25 transition-all hover:shadow-xl hover:shadow-primary-500/30"
               >
-                Get Tickets Now
+                Get Tickets
                 <svg
                   class="h-5 w-5"
                   fill="none"
@@ -1621,18 +1445,11 @@
               <div
                 class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-accent-500 text-white"
               >
-                <svg
+                <img
+                  src="assets/images/favicon.PNG"
+                  alt="Clarity Conference Logo"
                   class="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                  ></path>
                 </svg>
               </div>
               <span class="text-xl font-bold text-white">Speak With Clarity</span>
@@ -1696,10 +1513,10 @@
             <ul class="mt-4 space-y-3">
               <li>
                 <a
-                  href="index.html#speakers"
+                  href="index.html#facilitator"
                   class="text-sm text-gray-400 transition-colors hover:text-primary-400"
                 >
-                  Speakers
+                  Facilitator
                 </a>
               </li>
               <li>
@@ -1724,14 +1541,6 @@
                   class="text-sm text-gray-400 transition-colors hover:text-primary-400"
                 >
                   Sponsors
-                </a>
-              </li>
-              <li>
-                <a
-                  href="index.html#venue"
-                  class="text-sm text-gray-400 transition-colors hover:text-primary-400"
-                >
-                  Venue
                 </a>
               </li>
             </ul>
@@ -1773,7 +1582,7 @@
                   href="#"
                   class="text-sm text-gray-400 transition-colors hover:text-primary-400"
                 >
-                  Call for Speakers
+                  Participant Guide
                 </a>
               </li>
               <li>
